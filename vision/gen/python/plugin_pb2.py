@@ -24,45 +24,45 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0cplugin.proto\x12\tplugin.v1\",\n\x0bPluginError\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\x12\x0f\n\x07message\x18\x02 \x01(\t\":\n\x11InitializeRequest\x12\x11\n\tplugin_id\x18\x01 \x01(\t\x12\x12\n\nsocket_url\x18\x02 \x01(\t\"L\n\x12InitializeResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12%\n\x05\x65rror\x18\x02 \x01(\x0b\x32\x16.plugin.v1.PluginError\"\x14\n\x12GetMetadataRequest\"\xcc\x01\n\x13GetMetadataResponse\x12\x11\n\tplugin_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0f\n\x07version\x18\x03 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x04 \x01(\t\x12#\n\x04type\x18\x05 \x01(\x0e\x32\x15.plugin.v1.PluginType\x12#\n\x06inputs\x18\x06 \x03(\x0e\x32\x13.plugin.v1.DataType\x12$\n\x07outputs\x18\x07 \x03(\x0e\x32\x13.plugin.v1.DataType\"\x0f\n\rHealthRequest\"J\n\x0eHealthResponse\x12\'\n\x06status\x18\x01 \x01(\x0e\x32\x17.plugin.v1.PluginStatus\x12\x0f\n\x07message\x18\x02 \x01(\t\"a\n\x12HandleEventRequest\x12\x12\n\nevent_type\x18\x01 \x01(\t\x12&\n\tdata_type\x18\x02 \x01(\x0e\x32\x13.plugin.v1.DataType\x12\x0f\n\x07payload\x18\x03 \x01(\x0c\"\x86\x01\n\x13HandleEventResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12&\n\tdata_type\x18\x02 \x01(\x0e\x32\x13.plugin.v1.DataType\x12\x0f\n\x07payload\x18\x03 \x01(\x0c\x12%\n\x05\x65rror\x18\x04 \x01(\x0b\x32\x16.plugin.v1.PluginError\"H\n\rStreamRequest\x12&\n\tdata_type\x18\x01 \x01(\x0e\x32\x13.plugin.v1.DataType\x12\x0f\n\x07payload\x18\x02 \x01(\x0c\"p\n\x0eStreamResponse\x12&\n\tdata_type\x18\x01 \x01(\x0e\x32\x13.plugin.v1.DataType\x12\x0f\n\x07payload\x18\x02 \x01(\x0c\x12%\n\x05\x65rror\x18\x03 \x01(\x0b\x32\x16.plugin.v1.PluginError\"\x11\n\x0fShutdownRequest\"J\n\x10ShutdownResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12%\n\x05\x65rror\x18\x02 \x01(\x0b\x32\x16.plugin.v1.PluginError*r\n\nPluginType\x12\x1b\n\x17PLUGIN_TYPE_UNSPECIFIED\x10\x00\x12\x15\n\x11PLUGIN_TYPE_VOICE\x10\x01\x12\x16\n\x12PLUGIN_TYPE_VISION\x10\x02\x12\x18\n\x14PLUGIN_TYPE_LANGUAGE\x10\x03*\xa7\x01\n\x08\x44\x61taType\x12\x19\n\x15\x44\x41TA_TYPE_UNSPECIFIED\x10\x00\x12\x12\n\x0e\x44\x41TA_TYPE_TEXT\x10\x01\x12\x12\n\x0e\x44\x41TA_TYPE_JSON\x10\x02\x12\x13\n\x0f\x44\x41TA_TYPE_IMAGE\x10\x03\x12\x13\n\x0f\x44\x41TA_TYPE_AUDIO\x10\x04\x12\x14\n\x10\x44\x41TA_TYPE_CAMERA\x10\x05\x12\x18\n\x14\x44\x41TA_TYPE_MICROPHONE\x10\x06*\x92\x01\n\x0cPluginStatus\x12\x1d\n\x19PLUGIN_STATUS_UNSPECIFIED\x10\x00\x12\x19\n\x15PLUGIN_STATUS_LOADING\x10\x01\x12\x17\n\x13PLUGIN_STATUS_READY\x10\x02\x12\x16\n\x12PLUGIN_STATUS_BUSY\x10\x03\x12\x17\n\x13PLUGIN_STATUS_ERROR\x10\x04\x32\xbd\x03\n\rPluginService\x12I\n\nInitialize\x12\x1c.plugin.v1.InitializeRequest\x1a\x1d.plugin.v1.InitializeResponse\x12L\n\x0bGetMetadata\x12\x1d.plugin.v1.GetMetadataRequest\x1a\x1e.plugin.v1.GetMetadataResponse\x12=\n\x06Health\x12\x18.plugin.v1.HealthRequest\x1a\x19.plugin.v1.HealthResponse\x12L\n\x0bHandleEvent\x12\x1d.plugin.v1.HandleEventRequest\x1a\x1e.plugin.v1.HandleEventResponse\x12\x41\n\x06Stream\x12\x18.plugin.v1.StreamRequest\x1a\x19.plugin.v1.StreamResponse(\x01\x30\x01\x12\x43\n\x08Shutdown\x12\x1a.plugin.v1.ShutdownRequest\x1a\x1b.plugin.v1.ShutdownResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0cplugin.proto\x12\tplugin.v1\",\n\x0bPluginError\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\x12\x0f\n\x07message\x18\x02 \x01(\t\"\xde\x01\n\x11InitializeRequest\x12\x12\n\nsocket_url\x18\x01 \x01(\t\x12\x11\n\tplugin_id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x0f\n\x07version\x18\x04 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x05 \x01(\t\x12#\n\x04type\x18\x06 \x01(\x0e\x32\x15.plugin.v1.PluginType\x12#\n\x06inputs\x18\x07 \x03(\x0e\x32\x13.plugin.v1.DataType\x12$\n\x07outputs\x18\x08 \x03(\x0e\x32\x13.plugin.v1.DataType\"L\n\x12InitializeResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12%\n\x05\x65rror\x18\x02 \x01(\x0b\x32\x16.plugin.v1.PluginError\"\x14\n\x12GetMetadataRequest\"\xcc\x01\n\x13GetMetadataResponse\x12\x11\n\tplugin_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0f\n\x07version\x18\x03 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x04 \x01(\t\x12#\n\x04type\x18\x05 \x01(\x0e\x32\x15.plugin.v1.PluginType\x12#\n\x06inputs\x18\x06 \x03(\x0e\x32\x13.plugin.v1.DataType\x12$\n\x07outputs\x18\x07 \x03(\x0e\x32\x13.plugin.v1.DataType\"\x0f\n\rHealthRequest\"J\n\x0eHealthResponse\x12\'\n\x06status\x18\x01 \x01(\x0e\x32\x17.plugin.v1.PluginStatus\x12\x0f\n\x07message\x18\x02 \x01(\t\"a\n\x12HandleEventRequest\x12\x12\n\nevent_type\x18\x01 \x01(\t\x12&\n\tdata_type\x18\x02 \x01(\x0e\x32\x13.plugin.v1.DataType\x12\x0f\n\x07payload\x18\x03 \x01(\x0c\"\x86\x01\n\x13HandleEventResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12&\n\tdata_type\x18\x02 \x01(\x0e\x32\x13.plugin.v1.DataType\x12\x0f\n\x07payload\x18\x03 \x01(\x0c\x12%\n\x05\x65rror\x18\x04 \x01(\x0b\x32\x16.plugin.v1.PluginError\"H\n\rStreamRequest\x12&\n\tdata_type\x18\x01 \x01(\x0e\x32\x13.plugin.v1.DataType\x12\x0f\n\x07payload\x18\x02 \x01(\x0c\"p\n\x0eStreamResponse\x12&\n\tdata_type\x18\x01 \x01(\x0e\x32\x13.plugin.v1.DataType\x12\x0f\n\x07payload\x18\x02 \x01(\x0c\x12%\n\x05\x65rror\x18\x03 \x01(\x0b\x32\x16.plugin.v1.PluginError\"\x11\n\x0fShutdownRequest\"J\n\x10ShutdownResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12%\n\x05\x65rror\x18\x02 \x01(\x0b\x32\x16.plugin.v1.PluginError*r\n\nPluginType\x12\x1b\n\x17PLUGIN_TYPE_UNSPECIFIED\x10\x00\x12\x15\n\x11PLUGIN_TYPE_VOICE\x10\x01\x12\x16\n\x12PLUGIN_TYPE_VISION\x10\x02\x12\x18\n\x14PLUGIN_TYPE_LANGUAGE\x10\x03*\xa7\x01\n\x08\x44\x61taType\x12\x19\n\x15\x44\x41TA_TYPE_UNSPECIFIED\x10\x00\x12\x12\n\x0e\x44\x41TA_TYPE_TEXT\x10\x01\x12\x12\n\x0e\x44\x41TA_TYPE_JSON\x10\x02\x12\x13\n\x0f\x44\x41TA_TYPE_IMAGE\x10\x03\x12\x13\n\x0f\x44\x41TA_TYPE_AUDIO\x10\x04\x12\x14\n\x10\x44\x41TA_TYPE_CAMERA\x10\x05\x12\x18\n\x14\x44\x41TA_TYPE_MICROPHONE\x10\x06*\x92\x01\n\x0cPluginStatus\x12\x1d\n\x19PLUGIN_STATUS_UNSPECIFIED\x10\x00\x12\x19\n\x15PLUGIN_STATUS_LOADING\x10\x01\x12\x17\n\x13PLUGIN_STATUS_READY\x10\x02\x12\x16\n\x12PLUGIN_STATUS_BUSY\x10\x03\x12\x17\n\x13PLUGIN_STATUS_ERROR\x10\x04\x32\xbd\x03\n\rPluginService\x12I\n\nInitialize\x12\x1c.plugin.v1.InitializeRequest\x1a\x1d.plugin.v1.InitializeResponse\x12L\n\x0bGetMetadata\x12\x1d.plugin.v1.GetMetadataRequest\x1a\x1e.plugin.v1.GetMetadataResponse\x12=\n\x06Health\x12\x18.plugin.v1.HealthRequest\x1a\x19.plugin.v1.HealthResponse\x12L\n\x0bHandleEvent\x12\x1d.plugin.v1.HandleEventRequest\x1a\x1e.plugin.v1.HandleEventResponse\x12\x41\n\x06Stream\x12\x18.plugin.v1.StreamRequest\x1a\x19.plugin.v1.StreamResponse(\x01\x30\x01\x12\x43\n\x08Shutdown\x12\x1a.plugin.v1.ShutdownRequest\x1a\x1b.plugin.v1.ShutdownResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'plugin_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_PLUGINTYPE']._serialized_start=1052
-  _globals['_PLUGINTYPE']._serialized_end=1166
-  _globals['_DATATYPE']._serialized_start=1169
-  _globals['_DATATYPE']._serialized_end=1336
-  _globals['_PLUGINSTATUS']._serialized_start=1339
-  _globals['_PLUGINSTATUS']._serialized_end=1485
+  _globals['_PLUGINTYPE']._serialized_start=1217
+  _globals['_PLUGINTYPE']._serialized_end=1331
+  _globals['_DATATYPE']._serialized_start=1334
+  _globals['_DATATYPE']._serialized_end=1501
+  _globals['_PLUGINSTATUS']._serialized_start=1504
+  _globals['_PLUGINSTATUS']._serialized_end=1650
   _globals['_PLUGINERROR']._serialized_start=27
   _globals['_PLUGINERROR']._serialized_end=71
-  _globals['_INITIALIZEREQUEST']._serialized_start=73
-  _globals['_INITIALIZEREQUEST']._serialized_end=131
-  _globals['_INITIALIZERESPONSE']._serialized_start=133
-  _globals['_INITIALIZERESPONSE']._serialized_end=209
-  _globals['_GETMETADATAREQUEST']._serialized_start=211
-  _globals['_GETMETADATAREQUEST']._serialized_end=231
-  _globals['_GETMETADATARESPONSE']._serialized_start=234
-  _globals['_GETMETADATARESPONSE']._serialized_end=438
-  _globals['_HEALTHREQUEST']._serialized_start=440
-  _globals['_HEALTHREQUEST']._serialized_end=455
-  _globals['_HEALTHRESPONSE']._serialized_start=457
-  _globals['_HEALTHRESPONSE']._serialized_end=531
-  _globals['_HANDLEEVENTREQUEST']._serialized_start=533
-  _globals['_HANDLEEVENTREQUEST']._serialized_end=630
-  _globals['_HANDLEEVENTRESPONSE']._serialized_start=633
-  _globals['_HANDLEEVENTRESPONSE']._serialized_end=767
-  _globals['_STREAMREQUEST']._serialized_start=769
-  _globals['_STREAMREQUEST']._serialized_end=841
-  _globals['_STREAMRESPONSE']._serialized_start=843
-  _globals['_STREAMRESPONSE']._serialized_end=955
-  _globals['_SHUTDOWNREQUEST']._serialized_start=957
-  _globals['_SHUTDOWNREQUEST']._serialized_end=974
-  _globals['_SHUTDOWNRESPONSE']._serialized_start=976
-  _globals['_SHUTDOWNRESPONSE']._serialized_end=1050
-  _globals['_PLUGINSERVICE']._serialized_start=1488
-  _globals['_PLUGINSERVICE']._serialized_end=1933
+  _globals['_INITIALIZEREQUEST']._serialized_start=74
+  _globals['_INITIALIZEREQUEST']._serialized_end=296
+  _globals['_INITIALIZERESPONSE']._serialized_start=298
+  _globals['_INITIALIZERESPONSE']._serialized_end=374
+  _globals['_GETMETADATAREQUEST']._serialized_start=376
+  _globals['_GETMETADATAREQUEST']._serialized_end=396
+  _globals['_GETMETADATARESPONSE']._serialized_start=399
+  _globals['_GETMETADATARESPONSE']._serialized_end=603
+  _globals['_HEALTHREQUEST']._serialized_start=605
+  _globals['_HEALTHREQUEST']._serialized_end=620
+  _globals['_HEALTHRESPONSE']._serialized_start=622
+  _globals['_HEALTHRESPONSE']._serialized_end=696
+  _globals['_HANDLEEVENTREQUEST']._serialized_start=698
+  _globals['_HANDLEEVENTREQUEST']._serialized_end=795
+  _globals['_HANDLEEVENTRESPONSE']._serialized_start=798
+  _globals['_HANDLEEVENTRESPONSE']._serialized_end=932
+  _globals['_STREAMREQUEST']._serialized_start=934
+  _globals['_STREAMREQUEST']._serialized_end=1006
+  _globals['_STREAMRESPONSE']._serialized_start=1008
+  _globals['_STREAMRESPONSE']._serialized_end=1120
+  _globals['_SHUTDOWNREQUEST']._serialized_start=1122
+  _globals['_SHUTDOWNREQUEST']._serialized_end=1139
+  _globals['_SHUTDOWNRESPONSE']._serialized_start=1141
+  _globals['_SHUTDOWNRESPONSE']._serialized_end=1215
+  _globals['_PLUGINSERVICE']._serialized_start=1653
+  _globals['_PLUGINSERVICE']._serialized_end=2098
 # @@protoc_insertion_point(module_scope)

@@ -1,13 +1,11 @@
 syntax = "proto3";
 package plugin.v1;
-
 enum PluginType {
   PLUGIN_TYPE_UNSPECIFIED = 0;
   PLUGIN_TYPE_VOICE = 1;
   PLUGIN_TYPE_VISION = 2;
   PLUGIN_TYPE_LANGUAGE = 3;
 }
-
 enum DataType {
   DATA_TYPE_UNSPECIFIED = 0;
   DATA_TYPE_TEXT = 1;
@@ -17,7 +15,6 @@ enum DataType {
   DATA_TYPE_CAMERA = 5;
   DATA_TYPE_MICROPHONE = 6;
 }
-
 enum PluginStatus {
   PLUGIN_STATUS_UNSPECIFIED = 0;
   PLUGIN_STATUS_LOADING = 1;
@@ -25,12 +22,10 @@ enum PluginStatus {
   PLUGIN_STATUS_BUSY = 3;
   PLUGIN_STATUS_ERROR = 4;
 }
-
 message PluginError {
   string code = 1;
   string message = 2;
 }
-
 service PluginService {
   rpc Initialize(InitializeRequest) returns (InitializeResponse);
   rpc GetMetadata(GetMetadataRequest) returns (GetMetadataResponse);
@@ -39,19 +34,21 @@ service PluginService {
   rpc Stream(stream StreamRequest) returns (stream StreamResponse);
   rpc Shutdown(ShutdownRequest) returns (ShutdownResponse);
 }
-
 message InitializeRequest {
-  string plugin_id = 1;
-  string socket_url = 2;
+  string socket_url = 1;
+  string plugin_id = 2;
+  string name = 3;
+  string version = 4;
+  string description = 5;
+  PluginType type = 6;
+  repeated DataType inputs = 7;
+  repeated DataType outputs = 8;
 }
-
 message InitializeResponse {
   bool success = 1;
   PluginError error = 2;
 }
-
 message GetMetadataRequest {}
-
 message GetMetadataResponse {
   string plugin_id = 1;
   string name = 2;
@@ -61,40 +58,32 @@ message GetMetadataResponse {
   repeated DataType inputs = 6;
   repeated DataType outputs = 7;
 }
-
 message HealthRequest {}
-
 message HealthResponse {
   PluginStatus status = 1;
   string message = 2;
 }
-
 message HandleEventRequest {
   string event_type = 1;
   DataType data_type = 2;
   bytes payload = 3;
 }
-
 message HandleEventResponse {
   bool success = 1;
   DataType data_type = 2;
   bytes payload = 3;
   PluginError error = 4;
 }
-
 message StreamRequest {
   DataType data_type = 1;
   bytes payload = 2;
 }
-
 message StreamResponse {
   DataType data_type = 1;
   bytes payload = 2;
   PluginError error = 3;
 }
-
 message ShutdownRequest {}
-
 message ShutdownResponse {
   bool success = 1;
   PluginError error = 2;

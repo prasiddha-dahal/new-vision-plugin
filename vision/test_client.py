@@ -11,7 +11,6 @@ from plugin_pb2 import DataType
 
 SERVER_ADDRESS = "localhost:50051"
 
-
 def frame_generator():
     cap = cv2.VideoCapture(0)
     try:

@@ -3,6 +3,7 @@ import json
 import sys
 import time
 from concurrent import futures
+from typing import Generator, Iterator
 
 sys.path.insert(0, "./gen/python")
 
@@ -26,38 +27,34 @@ from plugin_pb2 import (
     ShutdownRequest,
     ShutdownResponse,
 )
-from hand_gesture import detect_from_jpeg
 from grpc_reflection.v1alpha import reflection
-from typing import Generator, Iterator
+from hand_gesture import detect_from_jpeg
 
 PORT: int = 50051
 
-
 class VisionPlugin(plugin_pb2_grpc.PluginServiceServicer):
-
+    
     def __init__(self) -> None:
-        self.plugin_id: str | None = None
-        self.status: int           = PluginStatus.Value("PLUGIN_STATUS_READY")
+        self.plugin_id  : str | None = None
+        self.name       : str | None = None
+        self.version    : str | None = None
+        self.description: str | None = None
+        self.status     : int        = PluginStatus.Value("PLUGIN_STATUS_READY")
 
-    def Initialize(
-        self,
-        request: InitializeRequest,
-        context: grpc.ServicerContext
-    ) -> InitializeResponse:
-        self.plugin_id = request.plugin_id
-        print(f"[vision] initialized with id: {self.plugin_id}")
+    def Initialize(self, request: InitializeRequest, context: grpc.ServicerContext) -> InitializeResponse:
+        self.plugin_id   = request.plugin_id
+        self.name        = request.name
+        self.version     = request.version
+        self.description = request.description
+        print(f"[vision] initialized — id: {self.plugin_id} name: {self.name}")
         return InitializeResponse(success=True)
 
-    def GetMetadata(
-        self,
-        request: GetMetadataRequest,
-        context: grpc.ServicerContext
-    ) -> GetMetadataResponse:
+    def GetMetadata(self, request: GetMetadataRequest, context: grpc.ServicerContext) -> GetMetadataResponse:
         return GetMetadataResponse(
-            plugin_id   = "vision-plugin",
-            name        = "Vision Plugin",
-            version     = "0.1.0",
-            description = "Hand gesture detection using MediaPipe",
+            plugin_id   = self.plugin_id,
+            name        = self.name,
+            version     = self.version,
+            description = self.description,
             type        = PluginType.Value("PLUGIN_TYPE_VISION"),
             inputs      = [DataType.Value("DATA_TYPE_CAMERA")],
             outputs     = [DataType.Value("DATA_TYPE_JSON")]
@@ -69,8 +66,8 @@ class VisionPlugin(plugin_pb2_grpc.PluginServiceServicer):
         context: grpc.ServicerContext
     ) -> HealthResponse:
         return HealthResponse(
-            status  = self.status,
-            message = "ok"
+            status=self.status,
+            message="ok"
         )
 
     def Stream(
@@ -81,10 +78,10 @@ class VisionPlugin(plugin_pb2_grpc.PluginServiceServicer):
         print("[vision] stream started")
         self.status = PluginStatus.Value("PLUGIN_STATUS_BUSY")
 
-        last_trigger_time: float      = 0.0
-        last_move_time   : float      = 0.0
-        prev_palm        : tuple | None = None
-        prev_gesture     : str        = "NONE"
+        last_trigger_time: float = 0.0
+        last_move_time: float = 0.0
+        prev_palm: tuple | None = None
+        prev_gesture: str = "NONE"
 
         try:
             for request in request_iterator:
@@ -98,12 +95,12 @@ class VisionPlugin(plugin_pb2_grpc.PluginServiceServicer):
                 current_time = time.time()
 
                 event, prev_palm, prev_gesture, last_trigger_time, last_move_time = detect_from_jpeg(
-                    jpeg_bytes        = request.payload,
-                    current_time      = current_time,
-                    prev_palm         = prev_palm,
-                    prev_gesture      = prev_gesture,
-                    last_trigger_time = last_trigger_time,
-                    last_move_time    = last_move_time,
+                    jpeg_bytes=request.payload,
+                    current_time=current_time,
+                    prev_palm=prev_palm,
+                    prev_gesture=prev_gesture,
+                    last_trigger_time=last_trigger_time,
+                    last_move_time=last_move_time,
                 )
 
                 if event is None:
@@ -112,15 +109,15 @@ class VisionPlugin(plugin_pb2_grpc.PluginServiceServicer):
                 print(f"[vision] detected: {event['gesture']}")
 
                 yield StreamResponse(
-                    data_type = DataType.Value("DATA_TYPE_JSON"),
-                    payload   = json.dumps(event).encode("utf-8")
+                    data_type=DataType.Value("DATA_TYPE_JSON"),
+                    payload=json.dumps(event).encode("utf-8")
                 )
 
         except Exception as e:
             yield StreamResponse(
-                error = PluginError(
-                    code    = "STREAM_ERROR",
-                    message = str(e)
+                error=PluginError(
+                    code="STREAM_ERROR",
+                    message=str(e)
                 )
             )
 
@@ -142,10 +139,10 @@ class VisionPlugin(plugin_pb2_grpc.PluginServiceServicer):
             return HandleEventResponse(success=True)
 
         return HandleEventResponse(
-            success = False,
-            error   = PluginError(
-                code    = "UNKNOWN_EVENT",
-                message = f"unknown event type: {event_type}"
+            success=False,
+            error=PluginError(
+                code="UNKNOWN_EVENT",
+                message=f"unknown event type: {event_type}"
             )
         )
 

@@ -107,17 +107,37 @@ Global___PluginError: _TypeAlias = PluginError  # noqa: Y015
 class InitializeRequest(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
 
-    PLUGIN_ID_FIELD_NUMBER: _builtins.int
     SOCKET_URL_FIELD_NUMBER: _builtins.int
-    plugin_id: _builtins.str
+    PLUGIN_ID_FIELD_NUMBER: _builtins.int
+    NAME_FIELD_NUMBER: _builtins.int
+    VERSION_FIELD_NUMBER: _builtins.int
+    DESCRIPTION_FIELD_NUMBER: _builtins.int
+    TYPE_FIELD_NUMBER: _builtins.int
+    INPUTS_FIELD_NUMBER: _builtins.int
+    OUTPUTS_FIELD_NUMBER: _builtins.int
     socket_url: _builtins.str
+    plugin_id: _builtins.str
+    name: _builtins.str
+    version: _builtins.str
+    description: _builtins.str
+    type: Global___PluginType.ValueType
+    @_builtins.property
+    def inputs(self) -> _containers.RepeatedScalarFieldContainer[Global___DataType.ValueType]: ...
+    @_builtins.property
+    def outputs(self) -> _containers.RepeatedScalarFieldContainer[Global___DataType.ValueType]: ...
     def __init__(
         self,
         *,
-        plugin_id: _builtins.str = ...,
         socket_url: _builtins.str = ...,
+        plugin_id: _builtins.str = ...,
+        name: _builtins.str = ...,
+        version: _builtins.str = ...,
+        description: _builtins.str = ...,
+        type: Global___PluginType.ValueType = ...,
+        inputs: _abc.Iterable[Global___DataType.ValueType] | None = ...,
+        outputs: _abc.Iterable[Global___DataType.ValueType] | None = ...,
     ) -> None: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["plugin_id", b"plugin_id", "socket_url", b"socket_url"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["description", b"description", "inputs", b"inputs", "name", b"name", "outputs", b"outputs", "plugin_id", b"plugin_id", "socket_url", b"socket_url", "type", b"type", "version", b"version"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
 
 Global___InitializeRequest: _TypeAlias = InitializeRequest  # noqa: Y015
